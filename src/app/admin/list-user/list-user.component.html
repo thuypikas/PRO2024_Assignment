@@ -1,57 +1,39 @@
 <div class="main">
-    <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
-    <table class="table table-bordered custab">
-      <thead>
-        <tr>
-          <th class="text-center fix-w-5">ID</th>
-          <th class="text-center">Name</th>
-          <th class="text-center">Gender</th>
-          <th class="text-center">Mail</th>
-          <th class="text-center">Age</th>
-          <th class="text-center" style="width: 224px;"></th>
-        </tr>
-      </thead>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="text-center">
-          <a class='btn btn-info btn-xs' href="#"><span class="fa fa-edit"></span></a>&nbsp; <a href="#"
-            class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></a>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="text-center">
-          <a class='btn btn-info btn-xs' href="#"><span class="fa fa-edit"></span></a>&nbsp; <a href="#"
-            class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></a>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="text-center">
-          <a class='btn btn-info btn-xs' href="#"><span class="fa fa-edit"></span></a>&nbsp; <a href="#"
-            class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></a>
-        </td>
-      </tr>
-    </table>
-    <div class="page">
-        <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-    </div>
+  <div class="">
+    <button (click)="addUser()" class="btn btn-info btn-xs pull-right"><b>+</b> Add new user</button>
   </div>
+  <table class="table table-bordered custab">
+    <thead>
+      <tr>
+        <th class="text-center fix-w-5">ID</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Gender</th>
+        <th class="text-center">Mail</th>
+        <th class="text-center">Age</th>
+        <th class="text-center" style="width: 224px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let rowIndex = index">
+        <td>{{rowIndex+1}}</td>
+        <td>{{user.fullname}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.age}}</td>
+        <td class="text-center">
+          <button (click)="updateUser()" class='btn btn-info btn-xs'><span class="fa fa-edit"></span></button>&nbsp;
+          <button (click)="deleteUser()" class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </div>
+</div>
