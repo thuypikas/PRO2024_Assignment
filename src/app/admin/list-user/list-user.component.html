@@ -21,8 +21,8 @@
         <td>{{user.email}}</td>
         <td>{{user.age}}</td>
         <td class="text-center">
-          <button (click)="updateUser()" class='btn btn-info btn-xs'><span class="fa fa-edit"></span></button>&nbsp;
-          <button (click)="deleteUser()" class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></button>
+          <button (click)="updateUser(user)" class='btn btn-info btn-xs'><span class="fa fa-edit"></span></button>&nbsp;
+          <button (click)="deleteUser(user)" class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></button>
         </td>
       </tr>
     </tbody>

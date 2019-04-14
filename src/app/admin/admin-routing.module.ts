@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { ListPostComponent } from './list-post/list-post.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import { CreateUserComponent } from './list-user/create-user/create-user.component';
 
 const routes: Routes = [
   { path: 'category', component: ListCategoriesComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  entryComponents: [CreateUserComponent]
 })
 export class AdminRoutingModule { }

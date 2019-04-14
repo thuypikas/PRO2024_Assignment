@@ -1,12 +1,39 @@
 <div class="modal-header">
   <h4 class="modal-title pull-left">Create User</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="modalAdd.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <table></table>
+  <form [formGroup]="createUser">
+    <div class="form group row">
+      <label for="fullName"><b>Full name</b></label>
+      <input type="text" formControlName="fullname" class="form-control" required>
+    </div>
+    <div class="form-group row">
+      <label for="email"><b>Email</b></label>
+      <input type="text" formControlName="email" class="form-control" required>
+    </div>
+    <div class="form-group row">
+      <label for="password"><b>Password</b></label>
+      <input type="password" formControlName="password" class="form-control" required>
+    </div>
+    <div class="form-group row">
+        <label for="age"><b>Age</b></label>
+        <input type="number" formControlName="age" class="form-control" required>
+      </div>
+    <div class="form-group row">
+      <label for="photo"><b>Photo</b></label>
+      <input type="text" formControlName="avatar" class="form-control" required>
+    </div>
+    <div class="form-group row">
+      <label for="gender"><b>Gender</b></label>
+      <input type="radio" value="false" formControlName="gender"> Male
+      <input type="radio" value="true" formControlName="gender"> Female
+    </div>
+  </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Add</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalAdd.hide()">Close</button>
+  <button type="submit" class="btn btn-primary" (click)="add()">Add</button>
 </div>

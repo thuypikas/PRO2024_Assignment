@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { User } from './list-user.model';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { daLocale } from 'ngx-bootstrap';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-list-user',
@@ -11,12 +13,14 @@ import { CreateUserComponent } from './create-user/create-user.component';
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
-  users: User[];
+  users: any[] = [];
+  // users: User[];
+  event: EventEmitter<any> = new EventEmitter();
   bsModalRef: BsModalRef;
   constructor(
     private service: UserService,
     private router: Router,
-    private modalService: BsModalService
+    private modalService: BsModalService,
   ) { }
 
   ngOnInit() {
@@ -25,22 +29,40 @@ export class ListUserComponent implements OnInit {
 
   getUserData() {
     this.service.getAllUser().subscribe(data => {
-      this.users = data;
+      Object.assign(this.users, data);
     });
   }
 
   addUser() {
     this.bsModalRef = this.modalService.show(CreateUserComponent, {
-      class: 'modal-lg'
+      class: 'modal-lg',
+      initialState: {
+        buttonClicked: this.modalButtonClicked.bind(this)
+      }
     });
-    this.bsModalRef.content.closeBtnName = 'Add User';
+  }
+  modalButtonClicked(data) {
+    console.log(data);
+    if (data) {
+      this.getUserData();
+    }
   }
 
-  updateUser() {
-
+  updateUser(user) {
+    this.bsModalRef = this.modalService.show(EditUserComponent, {
+      class: 'modal-lg',
+      initialState: {
+        buttonClicked: this.modalButtonClicked.bind(this)
+      }
+    });
   }
 
-  deleteUser() {
-
+  deleteUser(user: User) {
+    this.service.delete(user.email).subscribe(data => {
+      console.log(data);
+      if (data) {
+        this.getUserData();
+      }
+    });
   }
 }

@@ -11,7 +11,7 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  baseurl = 'https://44144231.ngrok.io/';
+  baseurl = 'http://localhost:3000/';
 
   getAllUser() {
     return this.http.get<User[]>(this.baseurl + 'users');

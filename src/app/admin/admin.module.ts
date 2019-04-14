@@ -6,13 +6,16 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { ListPostComponent } from './list-post/list-post.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { ListUserModule } from './list-user/list-user.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ListCategoriesComponent, ListPostComponent, ListUserComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ListUserModule
+    ListUserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: []
 })
