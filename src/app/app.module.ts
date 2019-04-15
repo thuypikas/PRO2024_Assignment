@@ -14,6 +14,7 @@ import { BsModalRef, ButtonsModule } from 'ngx-bootstrap';
 import { AdminModule } from './admin/admin.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     NgbModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [BsModalRef],
   bootstrap: [AppComponent]

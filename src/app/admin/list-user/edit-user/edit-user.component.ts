@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap';
 import { User } from '../list-user.model';
+import { NotiMess } from 'src/app/shared/noti-mess';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,20 +16,25 @@ export class EditUserComponent implements OnInit {
   buttonClicked: any;
   user: User;
   email: string;
+  emailData: any;
   constructor(
     private fb: FormBuilder,
     private service: UserService,
     private router: Router,
     public modalAdd: BsModalRef,
+    private route: ActivatedRoute
   ) { }
 
 
   ngOnInit() {
-    this.buildForm();
-    this.service.getUserByEmail('').subscribe(res => {
-      console.log(res);
-      this.formEdit.patchValue(res);
+    this.route.params.subscribe(params => {
+      console.log(params);
+      if (params[('email')]) {
+        this.email = params.get('email');
+        this.getData(this.email);
+      }
     });
+    this.buildForm();
   }
 
   buildForm() {
@@ -41,11 +47,28 @@ export class EditUserComponent implements OnInit {
       gender: [true, Validators.required]
     });
   }
-  edit(user: User) {
-    this.service.getUserByEmail(user.email).subscribe(data => {
-      console.log(data);
-      this.formEdit.patchValue(data);
-      // const data = this.formEdit.value.email;
+
+  getData(email) {
+    console.log('tt');
+    this.service.getUserByEmail({ email }).subscribe(result => {
+      this.emailData = result;
+      console.log(result);
+      this.formEdit.patchValue({
+        ...result,
+      });
+    });
+  }
+  edit() {
+    // tslint:disable-next-line:prefer-const
+    let formData = this.formEdit.value;
+    const body = {
+      ...formData,
+      email: this.email
+    };
+    this.service.updateUser(body).subscribe(res => {
+      console.log(res);
+      this.buttonClicked(true);
+      this.modalAdd.hide();
     });
   }
 }

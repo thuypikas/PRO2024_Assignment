@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ModalModule, BsModalService } from 'ngx-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap';
 import { dayOfYearFromWeeks } from 'ngx-bootstrap/chronos/units/week-calendar-utils';
+import { Toast, ToastrService } from 'ngx-toastr';
+import { NotiMess } from 'src/app/shared/noti-mess';
 
 
 @Component({
@@ -13,21 +15,39 @@ import { dayOfYearFromWeeks } from 'ngx-bootstrap/chronos/units/week-calendar-ut
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  createUser: FormGroup;
+
+  type: any;
+  data: any;
+  formUser: FormGroup;
   buttonClicked: any;
+  action: any = 'Add';
   // submitted = false;
   constructor(
     private fb: FormBuilder,
     private service: UserService,
     private router: Router,
     public modalAdd: BsModalRef,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.buildForm();
+    console.log(this.data);
+    if (this.type == 'edit') {
+      this.action = 'Update';
+    } else if (this.type == 'delete') {
+      this.action = 'Delete';
+    }
+    if (this.data != null) {
+      this.formUser.patchValue({
+        ...this.data,
+        gender: Boolean(this.data.gender)
+      });
+    }
   }
   buildForm() {
-    this.createUser = this.fb.group({
+    this.formUser = this.fb.group({
+      _id: 0,
       fullname: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -37,11 +57,26 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
-  add() {
-    // this.submitted = true;
-    if (this.createUser.valid) {
-      this.service.addUser(this.createUser.value).subscribe(data => {
-        console.log(data);
+  submit() {
+    if (this.formUser.invalid) {
+      return;
+    }
+    let params: any = this.formUser.value;
+    if (this.type == 'add') {
+      params._id = null;
+    }
+    if (this.type == 'add') {
+      this.service.addUser(params).subscribe(data => {
+        this.buttonClicked(true);
+        this.modalAdd.hide();
+      });
+    } else if (this.type == 'edit') {
+      this.service.updateUser(params).subscribe(data => {
+        this.buttonClicked(true);
+        this.modalAdd.hide();
+      });
+    } else {
+      this.service.delete(params.email).subscribe(data => {
         this.buttonClicked(true);
         this.modalAdd.hide();
       });

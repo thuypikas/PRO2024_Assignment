@@ -6,6 +6,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { daLocale } from 'ngx-bootstrap';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-list-user',
@@ -29,14 +30,17 @@ export class ListUserComponent implements OnInit {
 
   getUserData() {
     this.service.getAllUser().subscribe(data => {
-      Object.assign(this.users, data);
+      // Object.assign(this.users, data);
+      this.users = data;
     });
   }
 
-  addUser() {
+  actionUser(type, data: any = null) {
     this.bsModalRef = this.modalService.show(CreateUserComponent, {
       class: 'modal-lg',
       initialState: {
+        type: type,
+        data: data,
         buttonClicked: this.modalButtonClicked.bind(this)
       }
     });
@@ -49,6 +53,7 @@ export class ListUserComponent implements OnInit {
   }
 
   updateUser(user) {
+    // this.service.getUserByEmail();
     this.bsModalRef = this.modalService.show(EditUserComponent, {
       class: 'modal-lg',
       initialState: {

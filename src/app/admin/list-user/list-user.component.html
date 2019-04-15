@@ -1,6 +1,6 @@
 <div class="main">
   <div class="">
-    <button (click)="addUser()" class="btn btn-info btn-xs pull-right"><b>+</b> Add new user</button>
+    <button (click)="actionUser('add')" class="btn btn-info btn-xs pull-right"><b>+</b> Add new user</button>
   </div>
   <table class="table table-bordered custab">
     <thead>
@@ -17,12 +17,12 @@
       <tr *ngFor="let user of users; let rowIndex = index">
         <td>{{rowIndex+1}}</td>
         <td>{{user.fullname}}</td>
-        <td>{{user.gender}}</td>
+        <td>{{user.gender ? 'FeMale' : 'Male'}}</td>
         <td>{{user.email}}</td>
         <td>{{user.age}}</td>
         <td class="text-center">
-          <button (click)="updateUser(user)" class='btn btn-info btn-xs'><span class="fa fa-edit"></span></button>&nbsp;
-          <button (click)="deleteUser(user)" class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></button>
+          <button (click)="actionUser('edit', user)" class='btn btn-info btn-xs'><span class="fa fa-edit"></span></button>&nbsp;
+          <button (click)="actionUser('delete', user)" class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></button>
         </td>
       </tr>
     </tbody>
