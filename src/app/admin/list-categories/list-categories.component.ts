@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { CreateCategoriesComponent } from './create-categories/create-categories.component';
 
 @Component({
   selector: 'app-list-categories',
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCategoriesComponent implements OnInit {
 
-  constructor() { }
+  bsModalRef: BsModalRef;
+  constructor( private modalService: BsModalService) { }
 
   ngOnInit() {
-    console.log('this');
   }
 
+  actionCategory() {
+    this.bsModalRef = this.modalService.show(CreateCategoriesComponent, {});
+  }
 }

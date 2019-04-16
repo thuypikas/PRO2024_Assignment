@@ -39,7 +39,9 @@ export class ListUserComponent implements OnInit {
     this.bsModalRef = this.modalService.show(CreateUserComponent, {
       class: 'modal-lg',
       initialState: {
+        // tslint:disable-next-line:object-literal-shorthand
         type: type,
+        // tslint:disable-next-line:object-literal-shorthand
         data: data,
         buttonClicked: this.modalButtonClicked.bind(this)
       }

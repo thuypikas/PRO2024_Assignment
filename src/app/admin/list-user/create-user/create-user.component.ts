@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { ModalModule, BsModalService } from 'ngx-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap';
 import { dayOfYearFromWeeks } from 'ngx-bootstrap/chronos/units/week-calendar-utils';
-import { Toast, ToastrService } from 'ngx-toastr';
 import { NotiMess } from 'src/app/shared/noti-mess';
 
 
@@ -27,7 +26,6 @@ export class CreateUserComponent implements OnInit {
     private service: UserService,
     private router: Router,
     public modalAdd: BsModalRef,
-    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -61,6 +59,7 @@ export class CreateUserComponent implements OnInit {
     if (this.formUser.invalid) {
       return;
     }
+    // tslint:disable-next-line:prefer-const
     let params: any = this.formUser.value;
     if (this.type == 'add') {
       params._id = null;

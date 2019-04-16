@@ -12,4 +12,5 @@ export class ListPostComponent implements OnInit {
   ngOnInit() {
   }
 
+  actionPost() { }
 }

@@ -4,3 +4,9 @@
   .mt-5, .my-5 {
     margin-top: 0rem !important;
 }
+.navbar navbar-dark bg-dark {
+  height: 30px;
+}
+.navbar-expand m-auto navbar-text {
+  line-height: 15px;
+}
