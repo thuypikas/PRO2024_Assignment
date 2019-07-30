@@ -11,10 +11,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let post of posts; let rowIndex = index">
+      <tr *ngFor="let post of listPost; let rowIndex = index">
         <td>{{rowIndex+1}}</td>
-        <td>thuy</td>
-        <td>thuy</td>
+        <td>{{post.content}}</td>
+        <td>{{post.author}}</td>
         <td class="text-center">
           <button (click)="actionPost('edit', post)" class='btn btn-info btn-xs'><span class="fa fa-eye"></span></button>&nbsp;
           <button (click)="actionPost('delete', post)" class="btn btn-danger btn-xs"><span class="fa fa-remove"></span></button>

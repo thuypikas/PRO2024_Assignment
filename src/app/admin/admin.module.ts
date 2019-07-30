@@ -7,6 +7,8 @@ import { ListPostComponent } from './list-post/list-post.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { ListUserModule } from './list-user/list-user.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategoriesModule } from './list-categories/categories.module';
+import { PostModule } from './list-post/post.module';
 
 @NgModule({
   declarations: [ListCategoriesComponent, ListPostComponent, ListUserComponent],
@@ -15,7 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminRoutingModule,
     ListUserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CategoriesModule,
+    PostModule
   ],
   providers: []
 })

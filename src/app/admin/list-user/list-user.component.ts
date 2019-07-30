@@ -4,9 +4,7 @@ import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { daLocale } from 'ngx-bootstrap';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-list-user',
@@ -54,22 +52,22 @@ export class ListUserComponent implements OnInit {
     }
   }
 
-  updateUser(user) {
-    // this.service.getUserByEmail();
-    this.bsModalRef = this.modalService.show(EditUserComponent, {
-      class: 'modal-lg',
-      initialState: {
-        buttonClicked: this.modalButtonClicked.bind(this)
-      }
-    });
-  }
+  // updateUser(user) {
+  //   // this.service.getUserByEmail();
+  //   this.bsModalRef = this.modalService.show(EditUserComponent, {
+  //     class: 'modal-lg',
+  //     initialState: {
+  //       buttonClicked: this.modalButtonClicked.bind(this)
+  //     }
+  //   });
+  // }
 
-  deleteUser(user: User) {
-    this.service.delete(user.email).subscribe(data => {
-      console.log(data);
-      if (data) {
-        this.getUserData();
-      }
-    });
-  }
+  // deleteUser(user: User) {
+  //   this.service.delete(user.email).subscribe(data => {
+  //     console.log(data);
+  //     if (data) {
+  //       this.getUserData();
+  //     }
+  //   });
+  // }
 }

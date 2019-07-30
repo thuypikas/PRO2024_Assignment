@@ -2,10 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { ModalModule, BsModalService } from 'ngx-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap';
-import { dayOfYearFromWeeks } from 'ngx-bootstrap/chronos/units/week-calendar-utils';
-import { NotiMess } from 'src/app/shared/noti-mess';
 
 
 @Component({
@@ -20,7 +17,6 @@ export class CreateUserComponent implements OnInit {
   formUser: FormGroup;
   buttonClicked: any;
   action: any = 'Add';
-  // submitted = false;
   constructor(
     private fb: FormBuilder,
     private service: UserService,
@@ -66,6 +62,8 @@ export class CreateUserComponent implements OnInit {
     }
     if (this.type == 'add') {
       this.service.addUser(params).subscribe(data => {
+        console.log(data);
+        
         this.buttonClicked(true);
         this.modalAdd.hide();
       });

@@ -1,0 +1,16 @@
+.modal-body {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.visiabled .form-control {
+        background-color: rgb(228, 227, 227);
+        pointer-events: none;
+        user-select: none;
+}
+
+.disable {
+    background-color: rgb(228, 227, 227);
+    pointer-events: none;
+    user-select: none; 
+}
